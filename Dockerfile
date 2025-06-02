@@ -40,6 +40,11 @@ RUN \
   echo "*** Convert line endings to Unix format ***" && \
   dos2unix "./docker-entrypoint.sh"
 
+USER root
+RUN mkdir -p /home/node/app/data && \
+    chown -R node:node /home/node/app/data
+USER node
+
 # Fix extension repos permissions
 RUN git config --global --add safe.directory "*"
 

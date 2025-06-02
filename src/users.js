@@ -525,7 +525,7 @@ export async function initUserStorage(dataRoot) {
  * @returns {string} The cookie secret
  */
 export function getCookieSecret(dataRoot) {
-    const cookieSecretPath = path.join(dataRoot, COOKIE_SECRET_PATH);
+    const cookieSecretPath = path.join('/home/node/app/data', COOKIE_SECRET_PATH);
 
     if (fs.existsSync(cookieSecretPath)) {
         const stat = fs.statSync(cookieSecretPath);
