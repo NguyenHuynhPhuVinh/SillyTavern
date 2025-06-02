@@ -41,7 +41,8 @@ RUN \
   dos2unix "./docker-entrypoint.sh"
 
 USER root
-RUN chown -R node:node /home/node/app
+RUN mkdir -p /home/node/app/data && \
+    chown -R node:node /home/node/app/data
 USER node
 
 # Fix extension repos permissions
