@@ -31,7 +31,8 @@ function convertConfig() {
             const config = require(path.join(process.cwd(), './config.conf.cjs'));
             fs.copyFileSync('./config.conf.cjs', './config.conf.bak');
             fs.rmSync('./config.conf.cjs');
-            fs.writeFileSync('./config.yaml', yaml.stringify(config));
+            const configPath = path.join(process.cwd(), 'config.yaml');
+            fs.writeFileSync(configPath, yaml.stringify(config));
             console.log(color.green('Conversion successful. Please check your config.yaml and fix it if necessary.'));
         } catch (error) {
             console.error(color.red('FATAL: Config conversion failed. Please check your config.conf file and try again.'), error);
@@ -108,7 +109,8 @@ try {
     // 1. Create default config files
     createDefaultFiles();
     // 2. Add missing config values
-    addMissingConfigValues(path.join(process.cwd(), './config.yaml'));
+    const configPath = path.join(process.cwd(), 'config.yaml');
+    addMissingConfigValues(configPath);
 } catch (error) {
     console.error(error);
 }

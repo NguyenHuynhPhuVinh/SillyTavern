@@ -6,8 +6,8 @@ ARG APP_HOME=/home/node/app
 # Install system dependencies
 RUN apk add --no-cache gcompat tini git git-lfs
 
-# Create app directory
-WORKDIR ${APP_HOME}
+# Set working directory to /home/node/app
+WORKDIR /home/node/app
 
 # Set NODE_ENV to production
 ENV NODE_ENV=production
@@ -41,8 +41,7 @@ RUN \
   dos2unix "./docker-entrypoint.sh"
 
 USER root
-RUN mkdir -p /home/node/app/data && \
-    chown -R node:node /home/node/app/data
+RUN chown -R node:node /home/node/app
 USER node
 
 # Fix extension repos permissions
